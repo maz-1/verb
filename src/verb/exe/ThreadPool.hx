@@ -11,9 +11,9 @@ package verb.exe;
 #if (neko || cpp)
 	private class PoolThread
 	{
-		private var thread:Thread;
+		private var thread:sys.thread.Thread;
 		private var task:Dynamic->Dynamic;
-		private var mutex:Mutex;
+		private var mutex:sys.thread.Mutex;
 		public var started:Bool;
 		private var _done:Bool;
 		public var done(get, never):Bool;
@@ -36,7 +36,7 @@ package verb.exe;
 
 		public function new()
 		{
-			mutex = new Mutex();
+			mutex = new sys.thread.Mutex();
 		}
 
 		public function start(task:Dynamic->Dynamic, arg:Dynamic):Void
@@ -44,13 +44,13 @@ package verb.exe;
 			this.task = task;
 			started = true;
 			_done = false;
-			thread = Thread.create(doWork);
+			thread = sys.thread.Thread.create(doWork);
 			thread.sendMessage(arg);
 		}
 
 		private function doWork():Void
 		{
-			var arg:Dynamic = Thread.readMessage(true);
+			var arg:Dynamic = sys.thread.Thread.readMessage(true);
 			var ret:Dynamic = task(arg);
 			mutex.acquire();
 			_result = ret;
