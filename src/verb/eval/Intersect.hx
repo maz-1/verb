@@ -515,10 +515,10 @@ class Intersect {
         }
 
         var sol_obj = Minimizer.uncmin( objective, start_params, tol*tol, grad );
-        var final = sol_obj.solution;
+        var final_result = sol_obj.solution;
 
-        return new CurveSurfaceIntersection( final[0], [ final[1], final[2] ],
-            Eval.rationalCurvePoint( curve, final[0] ), Eval.rationalSurfacePoint( surface, final[1], final[2]) );
+        return new CurveSurfaceIntersection( final_result[0], [ final_result[1], final_result[2] ],
+            Eval.rationalCurvePoint( curve, final_result[0] ), Eval.rationalSurfacePoint( surface, final_result[1], final_result[2]) );
     }
 
     //Approximate the intersection of a polyline and mesh while maintaining parameter information
