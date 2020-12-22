@@ -3,4 +3,6 @@
 -cp src
 -cpp build/cpp
 -dce std
--D dll
+-D static_link
+-D ABI=-MD
+-D HXCPP_M64
