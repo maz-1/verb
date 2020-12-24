@@ -4,5 +4,5 @@
 -cpp build/cpp
 -dce std
 -D static_link
--D ABI=-MD
+-D ABI=-MDd
 -D HXCPP_M64
